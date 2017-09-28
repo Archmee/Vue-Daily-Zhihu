@@ -1,0 +1,62 @@
+html, body {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 16px;
+    height: 100%;
+    width: 100%;    /*使用click会出现绑定点击区域闪一下的情况*/
+    -webkit-tap-highlight-color: transparent;    /*用iphone或ipad浏览很长的网页滚动时的滑动效果*/
+    -webkit-overflow-scrolling: touch;
+}
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../iconfont/MaterialIcons-Regular.eot); /* For IE6-8 */
+    src: local('Material Icons'),
+        local('MaterialIcons-Regular'),
+        url(../iconfont/MaterialIcons-Regular.woff2) format('woff2'),
+        url(../iconfont/MaterialIcons-Regular.woff) format('woff'),
+        url(../iconfont/MaterialIcons-Regular.ttf) format('truetype');
+}
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;  /* Support for all WebKit browsers. */
+    -webkit-font-smoothing: antialiased;  /* Support for Safari and Chrome. */
+    text-rendering: optimizeLegibility;  /* Support for Firefox. */
+    -moz-osx-font-smoothing: grayscale;  /* Support for IE. */
+    font-feature-settings: 'liga';
+}
+.mint-swipe-indicator {
+    opacity: .6 !important;
+}
+body {
+    background-color: #EEE !important;
+}
+.hide-webkit-scrollbar::-webkit-scrollbar {
+    display: none !important;
+    width: 0 !important;
+    height: 0 !important;
+    -webkit-appearance: none;
+    opacity: 0 !important;
+}
+.theme-1 {
+    background-color: rgba(0, 0, 0, .1);
+}
+.theme-2 {
+    background-color: rgba(197, 184, 146, .1);
+}
+.theme-3 {
+    background-color: rgba(5, 97, 188, .1); /*  #0561BC */
+}
+.centernize {
+    max-width: 640px; /* //768 */
+    margin: 0 auto;
+}
