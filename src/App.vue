@@ -3,7 +3,7 @@
         <z-menu></z-menu>
         <z-header :class="{isShowMenu: showMenu}"></z-header>
 
-        <transition>
+        <transition name="fade">
             <keep-alive>
                 <router-view class="page" :class="{isShowMenu: showMenu}" @page-scroll="record" ref="page"></router-view>
             </keep-alive>
@@ -92,7 +92,7 @@ export default {
     box-shadow: 0 50px 100px 10px #AAA;
 
 .isShowMenu
-    transition: all .1s ease .3s;
+    transition: all .3s ease;
     // left: 260px !important;
     -webkit-filter: blur(2px);
     -ms-filter: blur(2px);
@@ -127,5 +127,12 @@ export default {
     border-radius: 10px;
     -webkit-box-shadow:inset 0 0 10px rgba(0,0,0, .5);
     background-color: #DDD;
+
+// 页面切换动画
+.fade-enter-active, .fade-leave-active
+    transition: all 1s ease;
+
+.fade-enter, .fade-leave-to
+    opacity: 0;
 
 </style>

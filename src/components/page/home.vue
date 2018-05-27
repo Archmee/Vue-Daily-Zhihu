@@ -10,7 +10,7 @@
         <div class="list" v-infinite-scroll="loadMore" infinite-scroll-disabled="busy" infinite-scroll-distance="10">
             <div class="date-list" v-for="(date, index) in dateList" :key="index">
                 <div class="date-spliter">
-                    <span>{{ date | dateSpliter }}</span>
+                    <span>{{ date | formatDate }}</span>
                 </div>
 
                 <z-list v-if="list[date]" :list="list[date]"></z-list>
@@ -33,10 +33,19 @@
                 dateList: [],
                 list: {},
                 busy: true, //禁用首次无用加载
-                dayBefore: 0,
                 scrollY: 0,
             }
         },
+        activated() {
+            // 切换头部工具栏
+            this.$store.commit('CONFIG_HEADER', [
+                'showMenu', 'showTitle', 'showSearch'
+            ]);
+
+            // 页面激活 恢复滚动条位置
+            this.$refs.scroller.scrollTop = this.scrollY;
+        },
+        deactivated() {},
         mounted() {
             this.$store.commit('SHOW_LOADING');
 
@@ -57,45 +66,23 @@
                 this.$store.commit('SHOW_TOAST', err.toString());
             });
         },
-        activated() {
-            // 切换头部工具栏
-            this.$store.commit('CONFIG_HEADER', [
-                'showMenu', 'showTitle', 'showSearch'
-            ]);
-
-            // 页面激活 恢复滚动条位置
-            this.$refs.scroller.scrollTop = this.scrollY;
-        },
-        deactivated() {},
         methods: {
             loadMore() { //下拉获取更多数据
                 this.$store.commit('SHOW_LOADING');
                 this.busy = true;
 
-                var dateString = this.getDateByDay(this.dayBefore);
+                var dateString = this.dateList[this.dateList.length-1]; //获取上一次加载到的日期
 
-                api.getNewsByDate(dateString).then(({data}) => {
+                api.getNewsByDate(dateString).then(({data}) => { //getNewsByDate是返回指定日期前一天的数据
                     this.$store.commit('HIDE_LOADING');
-                    this.busy = false;
                     this.dateList.push(data.date);
                     this.list[data.date] = data.stories;
+                    this.busy = false;
                 }).catch((err) => {
                     this.$store.commit('HIDE_LOADING');
                     this.$store.commit('SHOW_TOAST', err.toString());
                 });
 
-                this.dayBefore--;
-
-            },
-            // 格式化n天前的日期字符串
-            getDateByDay(dayBefore) {
-                var date = new Date();
-                date.setDate(date.getDate() + dayBefore);
-                var year = date.getFullYear();
-                var month = date.getMonth()+1;
-                var day = date.getDate();
-
-                return year + '' + (month < 10 ? '0' : '') + month + '' + (day < 10 ? '0' : '') + day;
             }
         },
         components: {
@@ -103,7 +90,7 @@
             ImageHead
         },
         filters: {
-            dateSpliter(date) {
+            formatDate(date) {
                 var res = date.match(/(\d{4})(\d{2})(\d{2})/);
                 res.shift();
                 return res.join('.');

@@ -74,15 +74,28 @@ export default {
         },
         togglePlay() {
             this.isPlaying = !this.isPlaying;
+            if (this.isPlaying) {
+                this.$store.commit('SHOW_TOAST', '暂未接入语音SDK');
+            }
         },
         toggleFavo() {
             this.$store.commit('TOGGLE_FAVO');
+            if (this.isFavo) {
+                this.$store.commit('SHOW_TOAST', '收藏成功，请在"我的收藏"中查看');
+            } else {
+                this.$store.commit('SHOW_TOAST', '已取消收藏');
+            }
         },
         toggleTodo() {
             this.$store.commit('TOGGLE_TODO');
+            if (this.isTodo) {
+                this.$store.commit('SHOW_TOAST', '离线成功，请在"未读清单"中查看');
+            } else {
+                this.$store.commit('SHOW_TOAST', '已删除该离线内容');
+            }
         },
         goback() {
-            this.$router.go(-1);
+            this.$router.push('/');
         }
     },
     watch: {

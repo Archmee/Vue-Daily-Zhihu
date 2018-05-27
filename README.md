@@ -24,7 +24,7 @@ npm run build
 - material-design-icons
 - mint-ui用了一个轮播组件
 
-感谢这些开源库，以及感谢[@walleeeee](https://github.com/walleeeee/daily-zhihu)提供的知乎日报API
+感谢这些开源库，以及感谢[izzyleung](https://github.com/izzyleung/ZhihuDailyPurify/wiki/%E7%9F%A5%E4%B9%8E%E6%97%A5%E6%8A%A5-API-%E5%88%86%E6%9E%90)和[@walleeeee](https://github.com/walleeeee/daily-zhihu)提供的知乎日报API
 
 ## 在线访问
 [链接](https://archmee.github.io/demo/show/vue-daily-zhihu)和扫码

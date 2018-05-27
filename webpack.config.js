@@ -5,7 +5,7 @@ module.exports = {
   entry: './src/main.js',
   output: {
     path: path.resolve(__dirname, './dist/'),
-    publicPath: '/dist/', //发布项目的绝对地址
+    publicPath: '/dist/', //发布项目的绝对地址 https://archmee.github.io/demo/show/vue-daily-zhihu/dist/
     filename: 'build.js',
   },
   module: {

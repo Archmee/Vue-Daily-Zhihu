@@ -92,6 +92,7 @@ const mutations = {
         state.isLoading = false;
     },
     SHOW_TOAST(state, text) {
+        state.showToast = false;
         state.showToast = true;
         state.toastText = text;
     },
